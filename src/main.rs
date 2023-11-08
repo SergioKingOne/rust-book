@@ -1,26 +1,63 @@
-// #![allow(unused)]
-#[derive(Debug)]
-enum UsState {
-    Alabama,
-    California,
+// // #![allow(unused)]
+// #[derive(Debug)]
+// enum UsState {
+//     Alabama,
+//     California,
+// }
+// enum Coin {
+//     Penny,
+//     Nickel,
+//     Dime,
+//     Quarter(UsState),
+// }
+use crate::garden::vegetables::Brocoli;
+pub mod garden;
+
+mod back_of_house {
+    pub struct Breakfast {
+        pub toast: String,
+        seasonal_fruit: String,
+    }
+
+    pub enum Order {
+        cheese,
+        rise,
+    }
+
+    impl Breakfast {
+        pub fn summer(toast: &str) -> Breakfast {
+            Breakfast {
+                toast: String::from(toast),
+                seasonal_fruit: String::from(""),
+            }
+        }
+    }
 }
-enum Coin {
-    Penny,
-    Nickel,
-    Dime,
-    Quarter(UsState),
+
+pub fn eat_at_restaurant() {
+    let mut meal = back_of_house::Breakfast::summer("Rye");
+
+    meal.toast = String::from("Wheat");
+
+    println!("I'd like {} toast please!", meal.toast);
 }
 
 fn main() {
-    // ***Concise Control Flow with if let***
-    let coin = Coin::Penny;
-    let mut count = 0;
+    eat_at_restaurant();
 
-    if let Coin::Quarter(state) = coin {
-        println!("State quarter from {:?}!", state);
-    } else {
-        count += 1;
-    }
+    // ***Defining Modules to Control Scope and Privacy***
+
+    // ***Defining Modules to Control Scope and Privacy***
+
+    // ***Concise Control Flow with if let***
+    // let coin = Coin::Penny;
+    // let mut count = 0;
+
+    // if let Coin::Quarter(state) = coin {
+    //     println!("State quarter from {:?}!", state);
+    // } else {
+    //     count += 1;
+    // }
 
     // match coin {
     //     Coin::Quarter(state) => println!("State quarter from {:?}", state),
