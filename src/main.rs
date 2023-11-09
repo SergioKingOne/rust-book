@@ -10,7 +10,6 @@
 //     Dime,
 //     Quarter(UsState),
 // }
-use crate::garden::vegetables::Brocoli;
 pub mod garden;
 
 mod back_of_house {
@@ -34,18 +33,63 @@ mod back_of_house {
     }
 }
 
-pub fn eat_at_restaurant() {
-    let mut meal = back_of_house::Breakfast::summer("Rye");
+mod front_of_house {
+    pub fn welcome() {}
 
-    meal.toast = String::from("Wheat");
-
-    println!("I'd like {} toast please!", meal.toast);
+    pub mod hosting {
+        pub fn add_to_waitlist() {}
+    }
 }
 
-fn main() {
-    eat_at_restaurant();
+use crate::front_of_house::hosting;
 
+mod customer {
+    // Can add the "use" here as well instead of calling "super"
+    pub fn eat_at_restaurant() {
+        super::front_of_house::welcome();
+
+        super::hosting::add_to_waitlist();
+        let mut meal = super::back_of_house::Breakfast::summer("Rye");
+
+        meal.toast = String::from("Wheat");
+
+        println!("I'd like {} toast please!", meal.toast);
+    }
+}
+use rand::Rng;
+use std::collections::HashMap;
+
+use std::fmt::Result as FtmResult;
+use std::io::Result;
+// use std::fmt;
+// use std::io;
+
+use std::{cmp::Ordering, io};
+// use std::cmp::Ordering;
+// use std::io;
+
+use std::io::Write;
+// use std::io;
+// use std::io::Write;
+
+use std::collections::*;
+
+fn main() {
     // ***Defining Modules to Control Scope and Privacy***
+    let secret_number = rand::thread_rng().gen_range(1..=100);
+    println!("{secret_number}");
+
+    customer::eat_at_restaurant();
+
+    let mut map: HashMap<i32, i32> = HashMap::new();
+    map.insert(1, 2);
+
+    fn function1() -> Result<()> {
+        Ok(())
+    }
+    fn function2() -> FtmResult {
+        Ok(())
+    }
 
     // ***Defining Modules to Control Scope and Privacy***
 
