@@ -2,8 +2,12 @@
 // use std::collections::HashMap;
 use std::fs;
 use std::io::{self, Read};
+use std::net::IpAddr;
 use std::{fs::File, io::ErrorKind};
 fn main() {
+    let home: IpAddr = "127.0.0.1"
+        .parse()
+        .expect("Hardcoded IP address should be valid");
     // ERROR HANDLING
 
     //Where the operator ? can be used...
